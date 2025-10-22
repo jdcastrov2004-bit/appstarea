@@ -4,106 +4,90 @@ from PIL import Image
 st.set_page_config(page_title="Suite de Interfaces Multimodales", page_icon="🎛️", layout="wide")
 
 st.title("🎛️ Suite de Interfaces Multimodales")
-st.caption("Catálogo de tus apps, ordenadas tal como las fuimos personalizando.")
+st.caption("Explora aplicaciones interactivas desarrolladas con inteligencia artificial multimodal: voz, texto, visión y datos.")
 
 with st.sidebar:
-    st.subheader("Acerca del catálogo")
+    st.subheader("💡 Sobre esta suite")
     st.write(
-        "Explora interfaces de voz, visión, análisis de texto, RAG, tableros y más. "
-        "Haz clic en cualquier tarjeta para abrir la aplicación correspondiente."
+        "Esta colección reúne diferentes aplicaciones diseñadas para experimentar con IA multimodal: "
+        "reconocimiento de voz, texto, imágenes, análisis de datos y más. "
+        "Cada módulo ilustra una capacidad distinta de la inteligencia artificial aplicada."
     )
 
-# ---- Definición del catálogo (orden exacto) ----
-APPS = [
-    # 1 → 14
-    {"title": "Intro", "emoji": "🎉", "url": "https://introjuanda.streamlit.app", "img": None,
-     "blurb": "Bienvenida y presentación general."},
+st.markdown("---")
 
-    {"title": "Interfaz Voz → Texto", "emoji": "🎙️➡️📝", "url": "https://interfazvoztextojuanda.streamlit.app", "img": "traductor.jpg",
-     "blurb": "Dicta y convierte tu voz en texto."},
+# --- Columnas principales ---
+col1, col2, col3 = st.columns(3)
 
-    {"title": "Interfaz Texto → Voz", "emoji": "📝➡️🔊", "url": "https://interfaztextovozjuanda.streamlit.app", "img": "luciernaga.jpg",
-     "blurb": "Escribe y escucha el audio generado en varios idiomas."},
+with col1:
+    st.subheader("🧠 Introducción General")
+    st.image(Image.open("luciernaga.jpg"), width=250)
+    st.write("Presentación e introducción al entorno de aplicaciones.")
+    st.write("[Abrir](https://introjuanda.streamlit.app)")
 
-    {"title": "Imagen → Texto (OCR)", "emoji": "🖼️➡️📝", "url": "https://imagentextoocrjuanda.streamlit.app", "img": "lupa.jpg",
-     "blurb": "Extrae texto desde una fotografía con OCR."},
+    st.subheader("🎙️ Interfaz Voz → Texto")
+    st.image(Image.open("traductor.jpg"), width=250)
+    st.write("Convierte tu voz en texto con reconocimiento automático de habla.")
+    st.write("[Abrir](https://interfazvoztextojuanda.streamlit.app)")
 
-    {"title": "Imagen → Texto + Audio", "emoji": "🖼️➡️📝🔊", "url": "https://imagentextoaudiojuanda.streamlit.app", "img": "inspector.jpg",
-     "blurb": "Convierte lo detectado en la imagen a voz."},
+    st.subheader("🔊 Interfaz Texto → Voz")
+    st.image(Image.open("luciernaga.jpg"), width=250)
+    st.write("Transforma texto en audio natural en diferentes idiomas.")
+    st.write("[Abrir](https://interfaztextovozjuanda.streamlit.app)")
 
-    {"title": "TF-IDF en Inglés", "emoji": "🔎🇬🇧", "url": "https://textoinglesjuanda.streamlit.app", "img": "lectora.jpg",
-     "blurb": "Encuentra el documento más relevante a tu pregunta (inglés)."},
+    st.subheader("🧭 Detección de Objetos")
+    st.image(Image.open("deteccion.jpg"), width=250)
+    st.write("Detecta y clasifica objetos dentro de una imagen usando YOLOv5.")
+    st.write("[Abrir](https://reconocimientodeobjetosenimagenesjuanda.streamlit.app)")
 
-    {"title": "TF-IDF en Español", "emoji": "🔎🇪🇸", "url": "https://textoespanoljuanda.streamlit.app", "img": "lectora.jpg",
-     "blurb": "Análisis de similitud entre textos en español."},
+with col2:
+    st.subheader("🖼️ Imagen → Texto (OCR)")
+    st.image(Image.open("lupa.jpg"), width=250)
+    st.write("Extrae texto desde fotografías o imágenes escaneadas.")
+    st.write("[Abrir](https://imagentextoocrjuanda.streamlit.app)")
 
-    {"title": "Reconocimiento de Gestos", "emoji": "✋🤖", "url": "https://reconocimientodegestosjuanda.streamlit.app", "img": "gestos.jpg",
-     "blurb": "Clasifica gestos con un modelo de Teachable Machine."},
+    st.subheader("🔊 Imagen → Texto + Audio")
+    st.image(Image.open("inspector.jpg"), width=250)
+    st.write("Lee una imagen, interpreta su contenido y lo convierte en audio.")
+    st.write("[Abrir](https://imagentextoaudiojuanda.streamlit.app)")
 
-    {"title": "Objetos en Imágenes (YOLOv5)", "emoji": "🧭🖼️", "url": "https://reconocimientodeobjetosenimagenesjuanda.streamlit.app", "img": "deteccion.jpg",
-     "blurb": "Detecta objetos en una foto y resume resultados."},
+    st.subheader("🔎 Análisis TF-IDF (Inglés)")
+    st.image(Image.open("lectora.jpg"), width=250)
+    st.write("Calcula similitud entre textos en inglés usando TF-IDF.")
+    st.write("[Abrir](https://textoinglesjuanda.streamlit.app)")
 
-    {"title": "Interpretación de Imágenes (GPT-4o)", "emoji": "🧠🖼️", "url": "https://interpretaciondeimagenesjuanda.streamlit.app", "img": "images.jpeg",
-     "blurb": "Describe y analiza imágenes con IA multimodal."},
+    st.subheader("🔎 Análisis TF-IDF (Español)")
+    st.image(Image.open("lectora.jpg"), width=250)
+    st.write("Encuentra el documento más relevante a partir de tu pregunta en español.")
+    st.write("[Abrir](https://textoespanoljuanda.streamlit.app)")
 
-    {"title": "Chat PDF (RAG)", "emoji": "💬📄", "url": "https://chatpdfjuanda.streamlit.app", "img": None,
-     "blurb": "Haz preguntas a tus PDFs con recuperación semántica."},
+with col3:
+    st.subheader("🖐️ Reconocimiento de Gestos")
+    st.image(Image.open("gestos.jpg"), width=250)
+    st.write("Clasifica movimientos de mano en tiempo real con un modelo entrenado.")
+    st.write("[Abrir](https://reconocimientodegestosjuanda.streamlit.app)")
 
-    {"title": "Tablero Personalizado", "emoji": "🎨", "url": "https://tableropersonalizadojuanda.streamlit.app", "img": None,
-     "blurb": "Dibuja, usa cuadrícula y exporta PNG/JSON."},
+    st.subheader("🧠 Interpretación de Imágenes (GPT-4o)")
+    st.image(Image.open("images.jpeg"), width=250)
+    st.write("Analiza y describe imágenes con inteligencia visual avanzada.")
+    st.write("[Abrir](https://interpretaciondeimagenesjuanda.streamlit.app)")
 
-    {"title": "Control por Voz (MQTT)", "emoji": "🎛️🎙️", "url": "https://controlporvozjuanda.streamlit.app", "img": "traductor.jpg",
-     "blurb": "Publica comandos por voz a un broker MQTT."},
+    st.subheader("💬 Chat PDF (RAG)")
+    st.image(Image.open("inspector.jpg"), width=250)
+    st.write("Haz preguntas a un PDF y recibe respuestas contextualizadas.")
+    st.write("[Abrir](https://chatpdfjuanda.streamlit.app)")
 
-    {"title": "AppsJuanda (Meta-app)", "emoji": "🗂️", "url": "https://appsjuanda.streamlit.app", "img": None,
-     "blurb": "Contenedor con enlaces a la colección completa."},
-]
+    st.subheader("🎨 Tablero Personalizado")
+    st.image(Image.open("lectora.jpg"), width=250)
+    st.write("Dibuja, usa cuadrículas y exporta tus creaciones.")
+    st.write("[Abrir](https://tableropersonalizadojuanda.streamlit.app)")
 
-# ---- Helper para tarjeta tipo catálogo ----
-def card(title, emoji, blurb, url, img_path=None):
-    with st.container():
-        st.markdown(
-            f"""
-            <div style="border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:14px; margin-bottom:16px;">
-              <div style="display:flex; gap:14px; align-items:center;">
-                <div style="width:120px; min-width:120px;">
-            """,
-            unsafe_allow_html=True,
-        )
-        # Miniatura (si existe)
-        if img_path:
-            try:
-                st.image(Image.open(img_path), use_container_width=True)
-            except Exception:
-                st.image(Image.new("RGB", (640, 400), color=(20, 20, 20)), caption="(imagen no encontrada)", use_container_width=True)
-        else:
-            st.image(Image.new("RGB", (640, 400), color=(20, 20, 20)), caption="(sin miniatura)", use_container_width=True)
+st.markdown("---")
 
-        st.markdown(
-            f"""
-                </div>
-                <div style="flex:1;">
-                  <h4 style="margin:0;">{emoji} {title}</h4>
-                  <p style="margin-top:6px; opacity:0.9;">{blurb}</p>
-            """,
-            unsafe_allow_html=True,
-        )
-        # Botón/link
-        try:
-            st.link_button("Abrir aplicación", url)
-        except Exception:
-            st.write(f"[Abrir aplicación]({url})")
+st.subheader("🎛️ Control por Voz (MQTT)")
+st.image(Image.open("traductor.jpg"), width=300)
+st.write("Controla sistemas físicos o virtuales por medio de comandos de voz.")
+st.write("[Abrir aplicación](https://controlporvozjuanda.streamlit.app)")
 
-        st.markdown(
-            """
-                </div>
-              </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-# ---- Render en 2 columnas (catálogo) ----
-left, right = st.columns(2)
-for i, app in enumerate(APPS):
-    (left if i % 2 == 0 else right).write(card(app["title"], app["emoji"], app["blurb"], app["url"], app["img"]))
+st.markdown("---")
+st.caption("Desarrollado por Juanda · Suite educativa de interfaces multimodales · 2025")
