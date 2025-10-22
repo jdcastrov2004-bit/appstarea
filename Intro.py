@@ -4,6 +4,7 @@ from PIL import Image
 st.set_page_config(page_title="Suite de Interfaces Multimodales", page_icon="🎛️", layout="wide")
 
 st.title("🎛️ Suite de Interfaces Multimodales")
+st.markdown("### Por: **Juan David Castro Valencia**")
 st.caption("Explora aplicaciones interactivas: voz, texto, visión, TF-IDF, RAG y más.")
 
 with st.sidebar:
@@ -15,7 +16,6 @@ with st.sidebar:
 
 st.markdown("---")
 
-# (título, imagen, descripción, enlace) — ORDEN IZQ→DER, 3 por fila
 APPS = [
     ("🧠 Introducción General", "travis.jpeg",
      "Presentación e introducción al entorno de aplicaciones.",
@@ -69,7 +69,6 @@ APPS = [
      "Publica comandos por voz hacia un broker MQTT.",
      "https://controlporvozjuanda.streamlit.app"),
 
-    # 👉 NUEVA
     ("📡 Control MQTT", "meme.png",
      "Botonera ON/OFF y valor analógico para publicar en MQTT.",
      "https://mqttcontroljuanda.streamlit.app"),
@@ -90,7 +89,7 @@ def render_card(title, img_name, desc, url):
     st.markdown(f"[🔗 Abrir aplicación]({url})")
     st.markdown("<br>", unsafe_allow_html=True)
 
-# Mostrar en filas de 3 (izq→der)
+# Mostrar en filas de 3 (izquierda a derecha)
 for i in range(0, len(APPS), 3):
     cols = st.columns(3)
     for col, app in zip(cols, APPS[i:i+3]):
@@ -98,4 +97,4 @@ for i in range(0, len(APPS), 3):
             render_card(*app)
 
 st.markdown("---")
-st.caption("Desarrollado por Juanda · Suite educativa de interfaces multimodales · 2025")
+st.caption("Desarrollado por Juan David Castro Valencia · Suite educativa de interfaces multimodales · 2025")
