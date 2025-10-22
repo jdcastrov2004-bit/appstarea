@@ -1,87 +1,109 @@
 import streamlit as st
 from PIL import Image
-st.title("Aplicaciones de Inteligencia Artificial.")
+
+st.set_page_config(page_title="Suite de Interfaces Multimodales", page_icon="🎛️", layout="wide")
+
+st.title("🎛️ Suite de Interfaces Multimodales")
+st.caption("Catálogo de tus apps, ordenadas tal como las fuimos personalizando.")
 
 with st.sidebar:
-  st.subheader("Aplicaciones con Inteligencia Artificial.")
-  parrafo = (
-    "La inteligencia artificial permite mejorar la toma de decisiones con el uso de datos, "
-    "automatizar tareas rutinarias y proporcionar análisis avanzados en tiempo real, lo que "
-    "resulta en una mayor eficiencia y precisión en diversos campos."
-  )
-  st.write(parrafo)
+    st.subheader("Acerca del catálogo")
+    st.write(
+        "Explora interfaces de voz, visión, análisis de texto, RAG, tableros y más. "
+        "Haz clic en cualquier tarjeta para abrir la aplicación correspondiente."
+    )
 
-url_ia="https://sites.google.com/view/aplicacionesdeia/inicio"
-st.subheader("En el siguiente enlace puedes encontrar páginas y ejercicios prácticos")
-st.write(f"Enlace para páginas y ejercicios: [Enlace]({url_ia})")
-col1, col2, col3 = st.columns(3)
+# ---- Definición del catálogo (orden exacto) ----
+APPS = [
+    # 1 → 14
+    {"title": "Intro", "emoji": "🎉", "url": "https://introjuanda.streamlit.app", "img": None,
+     "blurb": "Bienvenida y presentación general."},
 
-with col1:
- 
- st.subheader("Conversión de texto a voz")
- image = Image.open('txt_to_audio2.png')
- st.image(image, width=190)
- st.write("En la siguiente enlace usaremos una de las aplicaciones de Inteligencia Artificial") 
- url = "https://imultimod.streamlit.app/"
- st.write(f"Texto a voz: [Enlace]({url})")
+    {"title": "Interfaz Voz → Texto", "emoji": "🎙️➡️📝", "url": "https://interfazvoztextojuanda.streamlit.app", "img": "traductor.jpg",
+     "blurb": "Dicta y convierte tu voz en texto."},
 
- st.subheader("Reconocimiento de Objetos")
- image = Image.open('txt_to_audio.png')
- st.image(image, width=200)
- st.write("En la siguiente enlace veremos como se detectan objetos en Imágenes.") 
- url = "https://xn3pg24ztuv6fdiqon8qn3.streamlit.app/"
- st.write(f"YOLO: [Enlace]({url})")
+    {"title": "Interfaz Texto → Voz", "emoji": "📝➡️🔊", "url": "https://interfaztextovozjuanda.streamlit.app", "img": "luciernaga.jpg",
+     "blurb": "Escribe y escucha el audio generado en varios idiomas."},
 
- st.subheader("Entrenando Modelos")
- image = Image.open('OIG5.jpg')
- st.image(image, width=200)
- st.write("En la siguiente enlace veremos como puedes usar tu modelo entrenado.") 
- url = "https://xn3pg24ztuv6fdiqon8qn3.streamlit.app/"
- st.write(f"YOLO: [Enlace]({url})")
+    {"title": "Imagen → Texto (OCR)", "emoji": "🖼️➡️📝", "url": "https://imagentextoocrjuanda.streamlit.app", "img": "lupa.jpg",
+     "blurb": "Extrae texto desde una fotografía con OCR."},
 
-with col2: 
- st.subheader("Conversión de voz a texto")
- image = Image.open('OIG8.jpg')
- st.image(image, width=200)
- st.write("En la siguiente veremos una aplicación que usa la conversión de voz a texto.") 
- url = "https://traductor-ab0sp9f6fi.streamlit.app/"
- st.write(f"Voz a texto: [Enlace]({url})")
+    {"title": "Imagen → Texto + Audio", "emoji": "🖼️➡️📝🔊", "url": "https://imagentextoaudiojuanda.streamlit.app", "img": "inspector.jpg",
+     "blurb": "Convierte lo detectado en la imagen a voz."},
 
- st.subheader("Análisis de Datos")
- image = Image.open('data_analisis.png')
- st.image(image, width=190)
- st.write("En la siguiente enlace veremos como se pueden analizar datos usando agentes.") 
- url = "https://asistpy-csv.streamlit.app/"
- st.write(f"Datos: [Enlace]({url})")
+    {"title": "TF-IDF en Inglés", "emoji": "🔎🇬🇧", "url": "https://textoinglesjuanda.streamlit.app", "img": "lectora.jpg",
+     "blurb": "Encuentra el documento más relevante a tu pregunta (inglés)."},
 
- st.subheader("Trasnscriptor Audio y Video")
- image = Image.open('OIG3.jpg')
- st.image(image, width=200)
- st.write("En la siguiente enlace veremos como realizamos transcripciones de audio/video.") 
- url = "https://transcript-whisper.streamlit.app/"
- st.write(f"Transcriptor: [Enlace]({url})")
+    {"title": "TF-IDF en Español", "emoji": "🔎🇪🇸", "url": "https://textoespanoljuanda.streamlit.app", "img": "lectora.jpg",
+     "blurb": "Análisis de similitud entre textos en español."},
 
+    {"title": "Reconocimiento de Gestos", "emoji": "✋🤖", "url": "https://reconocimientodegestosjuanda.streamlit.app", "img": "gestos.jpg",
+     "blurb": "Clasifica gestos con un modelo de Teachable Machine."},
 
-with col3: 
- st.subheader("Generación en Contexto")
- image = Image.open('Chat_pdf.png')
- st.image(image, width=190)
- st.write("En la siguiente veremos una aplicación que usa RAG a partir de un documento (PDF).") 
- url = "https://chatpdf-cc.streamlit.app/"
- st.write(f"RAG: [Enlace]({url})")
+    {"title": "Objetos en Imágenes (YOLOv5)", "emoji": "🧭🖼️", "url": "https://reconocimientodeobjetosenimagenesjuanda.streamlit.app", "img": "deteccion.jpg",
+     "blurb": "Detecta objetos en una foto y resume resultados."},
 
- st.subheader("Análisis de Imagen")
- image = Image.open('OIG4.jpg')
- st.image(image, width=200)
- st.write("En la siguiente enlace veremos la capacidad de análisis en Imágenes.") 
- url = "https://vision2-gpt4o.streamlit.app/"
- st.write(f"Vision: [Enlace]({url})")
- 
- st.subheader("Sistema Ciberfísico")
- image = Image.open('OIG6.jpg')
- st.image(image, width=200)
- st.write("En la siguiente enlace veremos la capacidad de interacción con el mundo físico.") 
- url = "https://vision2-gpt4o.streamlit.app/"
- st.write(f"Vision: [Enlace]({url})")
+    {"title": "Interpretación de Imágenes (GPT-4o)", "emoji": "🧠🖼️", "url": "https://interpretaciondeimagenesjuanda.streamlit.app", "img": "images.jpeg",
+     "blurb": "Describe y analiza imágenes con IA multimodal."},
 
+    {"title": "Chat PDF (RAG)", "emoji": "💬📄", "url": "https://chatpdfjuanda.streamlit.app", "img": None,
+     "blurb": "Haz preguntas a tus PDFs con recuperación semántica."},
 
+    {"title": "Tablero Personalizado", "emoji": "🎨", "url": "https://tableropersonalizadojuanda.streamlit.app", "img": None,
+     "blurb": "Dibuja, usa cuadrícula y exporta PNG/JSON."},
+
+    {"title": "Control por Voz (MQTT)", "emoji": "🎛️🎙️", "url": "https://controlporvozjuanda.streamlit.app", "img": "traductor.jpg",
+     "blurb": "Publica comandos por voz a un broker MQTT."},
+
+    {"title": "AppsJuanda (Meta-app)", "emoji": "🗂️", "url": "https://appsjuanda.streamlit.app", "img": None,
+     "blurb": "Contenedor con enlaces a la colección completa."},
+]
+
+# ---- Helper para tarjeta tipo catálogo ----
+def card(title, emoji, blurb, url, img_path=None):
+    with st.container():
+        st.markdown(
+            f"""
+            <div style="border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:14px; margin-bottom:16px;">
+              <div style="display:flex; gap:14px; align-items:center;">
+                <div style="width:120px; min-width:120px;">
+            """,
+            unsafe_allow_html=True,
+        )
+        # Miniatura (si existe)
+        if img_path:
+            try:
+                st.image(Image.open(img_path), use_container_width=True)
+            except Exception:
+                st.image(Image.new("RGB", (640, 400), color=(20, 20, 20)), caption="(imagen no encontrada)", use_container_width=True)
+        else:
+            st.image(Image.new("RGB", (640, 400), color=(20, 20, 20)), caption="(sin miniatura)", use_container_width=True)
+
+        st.markdown(
+            f"""
+                </div>
+                <div style="flex:1;">
+                  <h4 style="margin:0;">{emoji} {title}</h4>
+                  <p style="margin-top:6px; opacity:0.9;">{blurb}</p>
+            """,
+            unsafe_allow_html=True,
+        )
+        # Botón/link
+        try:
+            st.link_button("Abrir aplicación", url)
+        except Exception:
+            st.write(f"[Abrir aplicación]({url})")
+
+        st.markdown(
+            """
+                </div>
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+# ---- Render en 2 columnas (catálogo) ----
+left, right = st.columns(2)
+for i, app in enumerate(APPS):
+    (left if i % 2 == 0 else right).write(card(app["title"], app["emoji"], app["blurb"], app["url"], app["img"]))
