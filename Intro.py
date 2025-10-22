@@ -15,6 +15,7 @@ with st.sidebar:
 
 st.markdown("---")
 
+# (título, imagen, descripción, enlace) — ORDEN IZQ→DER, 3 por fila
 APPS = [
     ("🧠 Introducción General", "travis.jpeg",
      "Presentación e introducción al entorno de aplicaciones.",
@@ -68,12 +69,16 @@ APPS = [
      "Publica comandos por voz hacia un broker MQTT.",
      "https://controlporvozjuanda.streamlit.app"),
 
+    # 👉 NUEVA
+    ("📡 Control MQTT", "meme.png",
+     "Botonera ON/OFF y valor analógico para publicar en MQTT.",
+     "https://mqttcontroljuanda.streamlit.app"),
+
     ("🗂️ AppsJuanda (meta-app)", None,
      "Contenedor general con enlaces a la colección completa.",
      "https://appsjuanda.streamlit.app"),
 ]
 
-# --- función para mostrar tarjetas ---
 def render_card(title, img_name, desc, url):
     st.markdown(f"### {title}")
     if img_name:
@@ -85,7 +90,7 @@ def render_card(title, img_name, desc, url):
     st.markdown(f"[🔗 Abrir aplicación]({url})")
     st.markdown("<br>", unsafe_allow_html=True)
 
-# --- mostrar apps en filas de 3 ---
+# Mostrar en filas de 3 (izq→der)
 for i in range(0, len(APPS), 3):
     cols = st.columns(3)
     for col, app in zip(cols, APPS[i:i+3]):
