@@ -16,6 +16,7 @@ with st.sidebar:
 
 st.markdown("---")
 
+# (título, imagen, descripción, enlace) — ORDEN IZQ→DER, 3 por fila
 APPS = [
     ("🧠 Introducción General", "travis.jpeg",
      "Presentación e introducción al entorno de aplicaciones.",
@@ -64,6 +65,11 @@ APPS = [
     ("🎨 Tablero Personalizado", "tablero.jpg",
      "Dibuja, usa cuadrículas y exporta tus creaciones.",
      "https://tableropersonalizadojuanda.streamlit.app"),
+
+    # NUEVO: Tablero Inteligente (Pro) justo al lado del Tablero Personalizado
+    ("🧠🎨 Tablero Inteligente (Pro)", "tablero.jpg",
+     "Lienzo con guía, exportación y análisis IA del boceto.",
+     "https://tablero2juanda.streamlit.app/"),
 
     ("🎛️ Control por Voz (MQTT)", "controlporvoz.jpg",
      "Publica comandos por voz hacia un broker MQTT.",
